@@ -33,7 +33,7 @@ Este programa se conecta a la API de entrenamiento POKE API para obtener informa
 
 ### Grupo Verde
 
-1. Cecili Montero
+1. Cecilia Montero
 2. Karla Mieres
 3. Gonzalo Aranda
 4. Andrea Pilquiman
