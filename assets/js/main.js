@@ -82,50 +82,22 @@ async function getPokemonData(nameOrId) {
 // Función para mostrar un Pokémon en un card
 function displayPokemonCard(pokemon) {
   const pokemonCard = document.createElement("div");
-  pokemonCard.classList.add("col-md-4", "mb-3");
+  pokemonCard.classList.add("col-md-1", "mb-3");
+  const ipowers = pokemon.stats.map((stat) => stat.base_stat);
+  const ilabels = pokemon.stats.map((stat) => stat.stat.name);
+
   pokemonCard.innerHTML = `
     <div class="card">
       <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="${pokemon.name}">
       <div class="card-body">
         <h5 class="card-title">${pokemon.name}</h5>
-        <button class="btn btn-primary btn-details" data-toggle="modal" data-target="#pokemon-modal" data-name="${pokemon.name}">Ver Detalles</button>
+        <p class="card-title">${ipowers}</p>
+        <p class="card-title">${ilabels}</p>
+        <button class="btn btn-primary btn-details" data-toggle="modal" data-target="#pokemon-modal" data-name="${pokemon.name}">Poderes</button>
       </div>
     </div>
   `;
   pokemonContainer.appendChild(pokemonCard);
-}
-
-// Función para mostrar los poderes de un Pokémon en un gráfico de torta
-function displayPowersChart(pokemon) {
-  const modalBody = document.getElementById("modal-body");
-  modalBody.innerHTML = `
-    <h5>Poderes:</h5>
-    <canvas id="powers-chart"></canvas>
-  `;
-
-  const powers = pokemon.stats.map((stat) => stat.base_stat);
-  const labels = pokemon.stats.map((stat) => stat.stat.name);
-
-  const powersChartCanvas = document.getElementById("powers-chart");
-  const powersChart = new Chart(powersChartCanvas, {
-    type: "pie",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          data: powers,
-          backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56",
-            "#4BC0C0",
-            "#9966FF",
-            "#FF9F40",
-          ],
-        },
-      ],
-    },
-  });
 }
 
 // Función para buscar un Pokémon por nombre

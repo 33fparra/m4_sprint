@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
   <title>Pokémon API - Grupo Verde</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
 
   <div id="pokemon-container" class="row"></div>
 
-  <div id="pokemon-modal" class="modal">
+   <div id="pokemon-modal" class="modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -20,11 +21,12 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-body" id="modal-body"><canvas id="powers-chart"></canvas></div>
       </div>
     </div>
   </div>
-
+ 
+ 
   <form id="search-form">
     <input type="text" id="pokemon-name-input" placeholder="Nombre del Pokémon">
     <button type="submit">Buscar por Nombre</button>
@@ -36,7 +38,9 @@
   <button id="load-more-button">Cargar Más</button>
   <button id="reset-button">Borrar Todo </button>
 
-  <script src="main.js"></script>
+
+
+  <script src="/m4_sprint/assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
@@ -44,4 +48,4 @@
 
 
 
-// Gonzalo Aranda
+<!-- // Gonzalo Aranda -->
