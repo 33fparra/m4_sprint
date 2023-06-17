@@ -202,5 +202,5 @@ closeModalButton.addEventListener("click", () => {
   modalBody.innerHTML = "";
 });
 
-// Cargar los primeros 20 pokémones al cargar la página
+// Cargar los primeros 20 pokémones al cargar página
 loadPokemons();
