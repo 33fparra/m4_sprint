@@ -63,7 +63,7 @@ const searchResults = document.getElementById("search-results");
 const loadButton = document.getElementById("load-button");
 const loadMoreButton = document.getElementById("load-more-button");
 const resetButton = document.getElementById("reset-button");
-let offset = 0;
+let offset = 0; //esta es la variable del numero de pokemones la inicializamos en 0
 
 // Función para obtener los datos de un Pokémon por su nombre o ID
 async function getPokemonData(nameOrId) {
@@ -72,6 +72,7 @@ async function getPokemonData(nameOrId) {
       `https://pokeapi.co/api/v2/pokemon/${nameOrId}`
     );
     const pokemon = await response.json();
+    console.log("Información Enviada.");
     return pokemon;
   } catch (error) {
     console.log(error);
@@ -82,7 +83,7 @@ async function getPokemonData(nameOrId) {
 // Función para mostrar un Pokémon en un card
 function displayPokemonCard(pokemon) {
   const pokemonCard = document.createElement("div");
-  pokemonCard.classList.add("col-md-4", "mb-3");
+  pokemonCard.classList.add("col-md-3", "mb-3");
   pokemonCard.innerHTML = `
     <div class="card">
       <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="${pokemon.name}">
@@ -95,7 +96,9 @@ function displayPokemonCard(pokemon) {
   pokemonContainer.appendChild(pokemonCard);
 }
 
-// Función para mostrar los poderes de un Pokémon en un gráfico de torta
+// Función para mostrar los poderes de un Pokémon en un gráfico de torta (Este tenemos que arreglar)
+
+
 function displayPowersChart(pokemon) {
   const modalBody = document.getElementById("modal-body");
   modalBody.innerHTML = `
@@ -133,13 +136,13 @@ searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const nameInput = document.getElementById("pokemon-name-input");
-  const name = nameInput.value.toLowerCase();
+  const name = nameInput.value.toLowerCase();                 //todo con minuscula
 
   try {
     const pokemon = await getPokemonData(name);
 
     const pokemonCard = document.createElement("div");
-    pokemonCard.classList.add("col-md-4", "mb-3");
+    pokemonCard.classList.add("col-md-3", "mb-3");
     pokemonCard.innerHTML = `
       <div class="card">
         <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="${pokemon.name}">
@@ -189,7 +192,11 @@ resetButton.addEventListener("click", () => {
   loadPokemons();
 });
 
+
+
 // Evento al abrir el modal para mostrar los detalles del pokémon
+
+
 pokemonModal.addEventListener("show.bs.modal", async (e) => {
   const pokemonName = e.relatedTarget.dataset.name;
   const pokemon = await getPokemonData(pokemonName);

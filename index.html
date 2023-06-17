@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   <title>Pokémon API - Grupo Verde</title>
 </head>
 <body>
+    <div class="container">
   <h1>Pokémon API</h1>
 
   <div id="pokemon-container" class="row"></div>
@@ -27,17 +29,17 @@
 
   <form id="search-form">
     <input type="text" id="pokemon-name-input" placeholder="Nombre del Pokémon">
-    <button type="submit">Buscar por Nombre</button>
+    <button type="submit" class="btn btn-primary">Buscar por Nombre</button>
   </form>
-
+<br>
   <div id="search-results"></div>
 
-  <button id="load-button">Cargar</button>
-  <button id="load-more-button">Cargar Más</button>
-  <button id="reset-button">Borrar Todo </button>
-
+  <button id="load-button" class="btn btn-primary">Cargar</button>
+  <button id="load-more-button" class="btn btn-primary">Cargar Más</button>
+  <button id="reset-button" class="btn btn-primary">Borrar Todo </button>
+  <br><br>
+</div>
   <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </body>
 </html>
