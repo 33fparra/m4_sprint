@@ -83,16 +83,16 @@ async function getPokemonData(nameOrId) {
 function displayPokemonCard(pokemon) {
   const pokemonCard = document.createElement("div");
   pokemonCard.classList.add("col-md-1", "mb-3");
-  const ipowers = pokemon.stats.map((stat) => stat.base_stat);
-  const ilabels = pokemon.stats.map((stat) => stat.stat.name);
+  const powers = pokemon.stats.map((stat) => stat.base_stat);
+  const poderes = pokemon.stats.map((stat) => stat.stat.name);
 
   pokemonCard.innerHTML = `
     <div class="card">
       <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="${pokemon.name}">
       <div class="card-body">
         <h5 class="card-title">${pokemon.name}</h5>
-        <p class="card-title">${ipowers}</p>
-        <p class="card-title">${ilabels}</p>
+        <p class="card-title">${powers}</p>
+        <p class="card-title">${poderes}</p>
         <button class="btn btn-primary btn-details" data-toggle="modal" data-target="#pokemon-modal" data-name="${pokemon.name}">Poderes</button>
       </div>
     </div>
