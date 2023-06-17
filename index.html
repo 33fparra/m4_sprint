@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon</title>
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <title>Pokémon API - Grupo Verde</title>
 </head>
 <body>
-    
-    <script src="main.js" type="module"></script>
-    <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
+    <div class="container">
+  <h1>Pokémon API</h1>
+
+  <div id="pokemon-container" class="row"></div>
+
+  <div id="pokemon-modal" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Detalles del Pokémon</h5>
+          <button type="button" id="close-modal-button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <form id="search-form">
+    <input type="text" id="pokemon-name-input" placeholder="Nombre del Pokémon">
+    <button type="submit" class="btn btn-primary">Buscar por Nombre</button>
+  </form>
+<br>
+  <div id="search-results"></div>
+
+  <button id="load-button" class="btn btn-primary">Cargar</button>
+  <button id="load-more-button" class="btn btn-primary">Cargar Más</button>
+  <button id="reset-button" class="btn btn-primary">Borrar Todo </button>
+  <br><br>
+</div>
+  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
+
+
+
+// Gonzalo Aranda
