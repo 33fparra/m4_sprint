@@ -57,8 +57,6 @@
 
 const pokemonContainer = document.getElementById("pokemon-container");
 const pokemonModal = document.getElementById("pokemon-modal");
-
-
 const closeModalButton = document.getElementById("close-modal-button");
 const searchForm = document.getElementById("search-form");
 const searchResults = document.getElementById("search-results");
@@ -95,12 +93,11 @@ function displayPokemonCard(pokemon) {
       </div>
     </div>
   `;
-  
+
   pokemonContainer.appendChild(pokemonCard);
 }
 
 // Función para mostrar los poderes de un Pokémon en un gráfico de torta (Este tenemos que arreglar)
-
 
 function displayPowersChart(pokemon) {
   const modalBody = document.getElementById("modal-body");
@@ -139,11 +136,14 @@ searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const nameInput = document.getElementById("pokemon-name-input");
-  const name = nameInput.value.toLowerCase();                 //todo con minuscula
+  const name = nameInput.value.toLowerCase(); //todo con minuscula
 
   try {
     const pokemon = await getPokemonData(name);
+    console.log(pokemon.name);
+    displayPokemonCard(pokemon);
 
+    /* 
     const pokemonCard = document.createElement("div");
     pokemonCard.classList.add("col-md-3", "mb-3");
     pokemonCard.innerHTML = `
@@ -158,11 +158,9 @@ searchForm.addEventListener("submit", async (e) => {
 
     searchResults.innerHTML = "";
     searchResults.appendChild(pokemonCard);
-    
+     */
 
     nameInput.value = ""; // Limpiar el input
-    
-
   } catch (error) {
     console.log(error);
   }
@@ -200,10 +198,10 @@ resetButton.addEventListener("click", () => {
 
 // Evento al abrir el modal para mostrar los detalles del pokémon
 
-pokemonModal.addEventListener("show.bs.modal", async(e) => {
+pokemonModal.addEventListener("show.bs.modal", async (e) => {
   const pokemonName = e.relatedTarget.dataset.name;
   const pokemon = await getPokemonData(pokemonName);
-  console.log("llego hasta aqui al apretar el boton")
+  console.log("llego hasta aqui al apretar el boton");
   const modalBody = document.getElementById("modal-body");
   modalBody.innerHTML = `
   Nombre: ${pokemon.name}
@@ -211,11 +209,7 @@ pokemonModal.addEventListener("show.bs.modal", async(e) => {
   displayPowersChart(pokemon);
 });
 
-
-
 // Evento al cerrar el modal para limpiar el contenido
 
 // Cargar los primeros 20 pokémones al cargar página
 loadPokemons();
-
-
