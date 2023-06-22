@@ -151,20 +151,17 @@ searchForm.addEventListener("submit", async (e) => {
         <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="${pokemon.name}">
         <div class="card-body">
           <h5 class="card-title">${pokemon.name}</h5>
-          <button class="btn btn-primary btn-details" data-toggle="modal" data-target="#pokemon-modal" data-name="${pokemon.name}" >Ver Detalles</button>
+          <button class="btn btn-primary btn-details" data-ds-toggle="modal" data-ds-target="#pokemon-modal" data-name="${pokemon.name}" >Ver Detalles</button>
         </div>
       </div>
     `;
 
     searchResults.innerHTML = "";
     searchResults.appendChild(pokemonCard);
+    
 
     nameInput.value = ""; // Limpiar el input
-    const verDetallesButton = pokemonCard.querySelector(".btn-details"); 
-    verDetallesButton.addEventListener("click", function() { 
-      const pokemonName = this.getAttribute("data-name"); 
-      console.log("Ver Detalles", pokemonName); 
-    });
+    
 
   } catch (error) {
     console.log(error);
@@ -203,31 +200,22 @@ resetButton.addEventListener("click", () => {
 
 // Evento al abrir el modal para mostrar los detalles del pokémon
 
-pokemonModal.addEventListener("show.bs.modal", (e) => {
+pokemonModal.addEventListener("show.bs.modal", async(e) => {
   const pokemonName = e.relatedTarget.dataset.name;
-  const pokemon = getPokemonData(pokemonName);
+  const pokemon = await getPokemonData(pokemonName);
   console.log("llego hasta aqui al apretar el boton")
   const modalBody = document.getElementById("modal-body");
-  modalBody.innerHTML = "";
+  modalBody.innerHTML = `
+  Nombre: ${pokemon.name}
+  `;
   displayPowersChart(pokemon);
 });
 
 
 
 // Evento al cerrar el modal para limpiar el contenido
-// closeModalButton.addEventListener("click", () => {
-//   windows.displayClose();
-// });
 
 // Cargar los primeros 20 pokémones al cargar página
 loadPokemons();
 
 
-//aparte pruebas
-
-// var myModal = document.getElementById('myModal')
-// var myInput = document.getElementById('myInput')
-
-// myModal.addEventListener('shown.bs.modal', function () {
-//   myInput.focus()
-// })
