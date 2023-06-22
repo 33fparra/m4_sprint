@@ -57,6 +57,8 @@
 
 const pokemonContainer = document.getElementById("pokemon-container");
 const pokemonModal = document.getElementById("pokemon-modal");
+
+
 const closeModalButton = document.getElementById("close-modal-button");
 const searchForm = document.getElementById("search-form");
 const searchResults = document.getElementById("search-results");
@@ -89,10 +91,11 @@ function displayPokemonCard(pokemon) {
       <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="${pokemon.name}">
       <div class="card-body">
         <h5 class="card-title">${pokemon.name}</h5>
-        <button class="btn btn-primary btn-details" data-toggle="modal" data-target="#pokemon-modal" data-name="${pokemon.name}">Ver Detalles</button>
+        <button class="btn btn-primary btn-details" data-bs-toggle="modal" data-bs-target="#pokemon-modal" data-name="${pokemon.name}">Ver Detalles</button>
       </div>
     </div>
   `;
+  
   pokemonContainer.appendChild(pokemonCard);
 }
 
@@ -148,7 +151,7 @@ searchForm.addEventListener("submit", async (e) => {
         <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="${pokemon.name}">
         <div class="card-body">
           <h5 class="card-title">${pokemon.name}</h5>
-          <button class="btn btn-primary btn-details" data-toggle="modal" data-target="#pokemon-modal" data-name="${pokemon.name}">Ver Detalles</button>
+          <button class="btn btn-primary btn-details" data-toggle="modal" data-target="#pokemon-modal" data-name="${pokemon.name}" >Ver Detalles</button>
         </div>
       </div>
     `;
@@ -157,6 +160,12 @@ searchForm.addEventListener("submit", async (e) => {
     searchResults.appendChild(pokemonCard);
 
     nameInput.value = ""; // Limpiar el input
+    const verDetallesButton = pokemonCard.querySelector(".btn-details"); 
+    verDetallesButton.addEventListener("click", function() { 
+      const pokemonName = this.getAttribute("data-name"); 
+      console.log("Ver Detalles", pokemonName); 
+    });
+
   } catch (error) {
     console.log(error);
   }
@@ -192,22 +201,33 @@ resetButton.addEventListener("click", () => {
   loadPokemons();
 });
 
-
-
 // Evento al abrir el modal para mostrar los detalles del pokémon
 
-
-pokemonModal.addEventListener("show.bs.modal", async (e) => {
+pokemonModal.addEventListener("show.bs.modal", (e) => {
   const pokemonName = e.relatedTarget.dataset.name;
-  const pokemon = await getPokemonData(pokemonName);
+  const pokemon = getPokemonData(pokemonName);
+  console.log("llego hasta aqui al apretar el boton")
+  const modalBody = document.getElementById("modal-body");
+  modalBody.innerHTML = "";
   displayPowersChart(pokemon);
 });
 
+
+
 // Evento al cerrar el modal para limpiar el contenido
-closeModalButton.addEventListener("click", () => {
-  const modalBody = document.getElementById("modal-body");
-  modalBody.innerHTML = "";
-});
+// closeModalButton.addEventListener("click", () => {
+//   windows.displayClose();
+// });
 
 // Cargar los primeros 20 pokémones al cargar página
 loadPokemons();
+
+
+//aparte pruebas
+
+// var myModal = document.getElementById('myModal')
+// var myInput = document.getElementById('myInput')
+
+// myModal.addEventListener('shown.bs.modal', function () {
+//   myInput.focus()
+// })
